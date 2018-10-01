@@ -38,7 +38,7 @@
 </head>
 <body>
 
-	<form:form commandName="role" id="newrole" class="layui-form"
+	<form:form modelAttribute="role" id="newrole" class="layui-form"
 		action="${pageContext.request.contextPath }/action_role/chg"
 		method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
 		

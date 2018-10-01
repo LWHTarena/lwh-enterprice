@@ -44,24 +44,25 @@ public class LogHandler {
     public ModelAndView list(HttpServletRequest request, Map<String, Object> map, @RequestParam(value = "page", required = false) Integer page,
                              @RequestParam(value = "pageSize", required = false) Integer pageSize) {
 
-        if (page==null) {
-            page=1;
+        if (page == null) {
+            page = 1;
         }
-        if (pageSize==null) {
-            pageSize=10;
-        }		List<ResFile> lfArray=FileUtil.getResFiles(messageSource,request.getSession().getServletContext().getRealPath(Log4jInit.outputDir));
+        if (pageSize == null) {
+            pageSize = 10;
+        }
+        List<ResFile> lfArray = FileUtil.getResFiles(messageSource, request.getSession().getServletContext().getRealPath(Log4jInit.outputDir));
 
-        List<Object> lobject=new ArrayList<Object>();
-        for (Object o1:lfArray) {
+        List<Object> lobject = new ArrayList<Object>();
+        for (Object o1 : lfArray) {
             lobject.add(o1);
         }
-        List<Object> currpage=ListUtil.paging(lobject, page, pageSize);
-        List<ResFile> currPageFiles=new ArrayList<ResFile>();
-        for (Object o2:currpage) {
-            ResFile lf=(ResFile) o2;
+        List<Object> currpage = ListUtil.paging(lobject, page, pageSize);
+        List<ResFile> currPageFiles = new ArrayList<ResFile>();
+        for (Object o2 : currpage) {
+            ResFile lf = (ResFile) o2;
             currPageFiles.add(lf);
         }
-        Rs rs=RsUtil.init(page, pageSize, lfArray.size());
+        Rs rs = RsUtil.init(page, pageSize, lfArray.size());
 
         rs.setList(currPageFiles);
         map.put("rs", rs);
@@ -72,23 +73,23 @@ public class LogHandler {
 
     @RequestMapping("/details")
     @Token(ajax = false, admin = true, failedPage = ADMINFORBID, msgKey = "fail.permission")
-    public ModelAndView details(Map<String, Object> map,@RequestParam(value = "securityStr", required = true) String securityStr) {
-        String realPath=DesUtils.decrypt(messageSource, securityStr,true);
+    public ModelAndView details(Map<String, Object> map, @RequestParam(value = "securityStr", required = true) String securityStr) {
+        String realPath = DesUtils.decrypt(messageSource, securityStr, true);
         String log;
-        log = FileUtil.readLargeFile4(realPath,null, System.getProperty("file.encoding"));
-        log=HtmlUtils.htmlEscape(log);
+        log = FileUtil.readLargeFile4(realPath, null, System.getProperty("file.encoding"));
+        log = HtmlUtils.htmlEscape(log);
         map.put("log", log);
         return MavUtil.mav("jsp/logs/details", "");
     }
 
     @ResponseBody
     @RequestMapping("/del")
-    @Token(ajax = true, admin = true,log=true,mark="log--<delete>",  failedPage = ADMINFORBID, msgKey = "fail.permission")
+    @Token(ajax = true, admin = true, log = true, mark = "log--<delete>", failedPage = ADMINFORBID, msgKey = "fail.permission")
     public int del(@RequestParam(value = "securityStr", required = true) String securityStr) {
-        String realPath=DesUtils.decrypt(messageSource, securityStr,true);
+        String realPath = DesUtils.decrypt(messageSource, securityStr, true);
         if (FileUtil.delete(realPath)) {
             return 0;
-        }else {
+        } else {
             return -1;
         }
 

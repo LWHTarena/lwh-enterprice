@@ -11,7 +11,7 @@
 <jsp:useBean id="tu" class="com.lwhtarena.company.sys.util.TimeUtil" scope="page" ></jsp:useBean>
 <jsp:useBean id="hq" class="com.lwhtarena.company.sys.util.HttpUtil" scope="page" ></jsp:useBean>
 
-<jsp:useBean id="portal" class="com.lwhtarena.company.entities.Portal" scope="request" ></jsp:useBean>
+<jsp:useBean id="portal" class="com.lwhtarena.company.web.entities.Portal" scope="request" ></jsp:useBean>
 <!DOCTYPE html>
 <html>
 <head>

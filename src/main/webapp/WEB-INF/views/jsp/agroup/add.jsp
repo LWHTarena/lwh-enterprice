@@ -50,7 +50,7 @@
 </head>
 <body>
 	<div class="runtest">
-		<form:form commandName="group" id="groupedit"
+		<form:form modelAttribute="group" id="groupedit"
 			action="${pageContext.request.contextPath}/action_agroup/add"
 			class="layui-form" method="post">
 

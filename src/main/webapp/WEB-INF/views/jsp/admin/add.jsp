@@ -44,7 +44,7 @@
 <p style="text-align: right;"></p>
 
 <!-- ■★▲◆修改点3  表单的id -->
-	<form:form commandName="admin" id="newcustomer" 
+	<form:form id="newcustomer"  modelAttribute="admin"
 		action="${pageContext.request.contextPath }/action_admin/add"
 		method="post" class="layui-form" accept-charset="UTF-8">
 		

@@ -69,7 +69,7 @@ margin-top: 5px;}
 </head>
 <body  class="layui-layout-body">
 	<div class="runtest">
-		<form:form commandName="article" id="articleedit"
+		<form:form modelAttribute="article" id="articleedit"
 			action="${pageContext.request.contextPath}/action_article/add"
 			class="layui-form" method="post">
 			<input type="hidden" name="token" value="${hq.buildToken()}" />
