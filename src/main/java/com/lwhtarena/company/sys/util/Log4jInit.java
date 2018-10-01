@@ -38,7 +38,7 @@ public class Log4jInit extends HttpServlet {
         String file = config.getInitParameter("log4j");
         String filePath = prefix + file;
         String outputDir = config.getInitParameter("outputDir");
-        outputDir = outputDir;
+        Log4jInit.outputDir = outputDir;
         Properties props = new Properties();
         String srvRunFile = FileUtil.webinfPath() + "/srvstart";
 
