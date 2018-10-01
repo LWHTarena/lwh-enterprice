@@ -141,7 +141,7 @@ var uri="${pageContext.request.contextPath }/action_user/loginTest";
 
 </c:if>
 <c:if test="${not login}">
-<form:form commandName="user" id="newuser" 
+<form:form modelAttribute="user" id="newuser"
 		action="${pageContext.request.contextPath }/action_user/login"
 		method="post" class="layui-form" accept-charset="UTF-8">
 		

@@ -26,7 +26,7 @@
 </style>
 </head>
 <body>
-<form:form commandName="group" id="newgroup" class="layui-form"
+<form:form modelAttribute="group" id="newgroup" class="layui-form"
 		action="${pageContext.request.contextPath }/action_role/maskchg"
 		method="post" accept-charset="UTF-8">
 		<input name="id" value="${requestScope.roleID }" hidden="hidden">

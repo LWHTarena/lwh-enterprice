@@ -31,7 +31,7 @@
 
 </head>
 <body>
-	<form:form commandName="user" id="userreg" class="layui-form"
+	<form:form modelAttribute="user" id="userreg" class="layui-form"
 		action="${pageContext.request.contextPath }/action_user/reg"
 		method="post" accept-charset="UTF-8">
 		
