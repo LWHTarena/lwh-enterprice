@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="Article" table="article" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		
+		<property name="subject" />
+		<property name="subjectShort" />
+		<property name="toppic" />
+		<property name="extra" />
+		<property name="thumbnail" />
+		<property name="titleImg" />
+		<property name="titleImgTxt" />
+		<property name="mediaUrl" />
+		<property name="content" type="text" />
+		<property name="synopsis" />
+		<property name="author" />
+		<property name="authorDept" />
+		<property name="authorEmail" />
+		<property name="authorUrl" />
+		<property name="views" />
+		<property name="creationTime" />
+		<property name="lastModifyTime" />
+		<property name="lastViewTime" />
+		<property name="status" />
+		<property name="price" />
+		<property name="soul" />
+		<property name="topOne" />
+
+		<many-to-one name="agroup" column="agID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="ArticleGroup" />
+		<many-to-one name="user" column="userID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.User" />
+		<many-to-one name="vbook" column="vbookID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.VisitorsBook" />
+		<many-to-one name="poll" column="pollID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.Poll" />
+		<many-to-one name="cb" column="cbID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.CommentBridge" />
+		<many-to-one name="hfs" column="fileID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.HtmlFileStatic" />
+        
+	</class>
+</hibernate-mapping>

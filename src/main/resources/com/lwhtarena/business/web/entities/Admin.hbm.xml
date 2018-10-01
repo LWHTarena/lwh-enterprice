@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="Admin" table="admin" dynamic-update="true">
+	
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="username" length="20" not-null="true" update="false"/>
+		<property name="uuid" length="36" not-null="true" update="false"/>
+		<property name="avatarUrl" />
+		<property name="truename" length="50" />
+		<property name="password" length="32" />
+		<property name="pwdAtCreate" length="32" />
+		<property name="salt" length="6" />
+		<property name="email" length="50" />
+		<property name="pwdChangeTime" />
+		<property name="lastLoginTime" />
+		<property name="lastLoginIP" />
+		<property name="createTime" />
+		<property name="createIP" length="64" />
+		<property name="mobile" />
+		<property name="state" />
+		
+	</class>
+</hibernate-mapping>

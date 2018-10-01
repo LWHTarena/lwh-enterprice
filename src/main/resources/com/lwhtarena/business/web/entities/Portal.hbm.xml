@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="Portal" table="portal_inf" dynamic-update="true">
+	
+		<id name="id" column="id">
+			<generator class="assigned" />
+		</id>
+		<property name="name" length="20" not-null="true" />
+		<property name="fullName"/>
+		<property name="url" />
+		<property name="status" />
+		<property name="keyWords" />
+		<property name="description" />
+		<property name="host" />
+		<property name="closeAnnounce" />
+		<property name="welcomeStr" />
+		<property name="ipRegScope" />
+		<property name="userRegAllow" />
+		<property name="poll" />
+		<property name="comm" />
+		<property name="freeComm" />
+		<property name="commPassAuto" />
+		<property name="artPassAuto" />
+		<property name="ipVisitAllow" />
+		<property name="codeSendMode" />
+		
+		<many-to-one name="vbook" column="vbookID" lazy="false" fetch="select" 
+			outer-join="true" class="VisitorsBook" />
+		
+	</class>
+</hibernate-mapping>

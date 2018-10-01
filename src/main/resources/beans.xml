@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Application context definition for PetClinic on Hibernate. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="portalDaoImpl" name="portalDaoImpl" class="com.lwhtarena.company.web.dao.impl.PortalDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="adminDaoImpl" name="adminDaoImpl" class="com.lwhtarena.company.web.dao.impl.AdminDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="roleDaoImpl" name="roleDaoImpl" class="com.lwhtarena.company.web.dao.impl.RoleDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="userDaoImpl" name="userDaoImpl" class="com.lwhtarena.company.web.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="userArtsCountDaoImp" name="userArtsCountDaoImp" class="com.lwhtarena.company.web.dao.impl.UserArtsCountDaoImp">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="groupDaoImpl" name="groupDaoImpl" class="com.lwhtarena.company.web.dao.impl.GroupDaoimpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="articleDaoImpl" name="articleDaoImpl" class="com.lwhtarena.company.web.dao.impl.ArticleDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="templetPortalMainDaoImpl" name="templetPortalMainDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.TemplatePortalMainDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="uploadedFileDaoImpl" name="uploadedFileDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.UploadedFileDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="articleAttaDaoImpl" name="articleAttaDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.ArticleAttrDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="visitorIPRecordDaoImpl" name="visitorIPRecordDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.VisitorIPRecordDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+
+	<bean id="visitorsBookDaoImpl" name="visitorsBookDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.VisitorsBookDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="visitArchivesDaoImpl" name="visitArchivesDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.VisitArchivesDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="visitorCountInPeriodDaoImpl" name="visitorCountInPeriodDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.VisitorCountInPeriodDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="pollDaoImpl" name="pollDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.PollDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="pollIPRecordDaoImpl" name="pollIPRecordDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.PollIPRecordDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="htmlFileStaticDaoImpl" name="htmlFileStaticDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.HtmlFileStaticDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="commentBridgeDaoImpl" name="commentBridgeDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.CommentBridgeDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	<bean id="commentThreadDaoImpl" name="commentThreadDaoImpl"
+		class="com.lwhtarena.company.web.dao.impl.CommentThreadDaoImpl">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	
+	
+
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="ArticleGroup" table="article_group" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		
+		<property name="footLeft" />
+		<property name="footRight" />
+		<property name="orderStr" />
+
+		<property name="name" not-null="true" />
+		<property name="title" />
+		<property name="icoUrl" />
+		<property name="jumpToUrl" />
+		<property name="folder" />
+		<property name="ipVisitAllow" />
+		<property name="htmlOwn" type="text" />
+		<property name="cw" />
+		<property name="ch" />
+		<property name="status" />
+		<property name="changed" />
+		<property name="staticPage" />
+		<property name="open" />
+		<property name="clogging" />
+		<property name="poll" />
+		<property name="comm" />
+		<property name="gather" />
+		
+
+		<many-to-one name="parent" column="parentID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="ArticleGroup" />
+		<many-to-one name="vbook" column="vbookID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="com.lwhtarena.company.web.entities.VisitorsBook" />
+        
+	</class>
+</hibernate-mapping>

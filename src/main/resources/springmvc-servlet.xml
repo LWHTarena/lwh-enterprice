@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- 配置自动扫描的包 -->
+    <context:component-scan base-package="com.lwhtarena.company.web.handlers"/>
+
+    <!-- token -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <mvc:annotation-driven >
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="aspect" class="com.lwhtarena.company.aop.TokenAspect"/>
+
+    <!-- servelt在找不到页面时，走的是dispatcherServlet路线。找不到的时候会报404加上这个默认的servlet时候，
+    servlet 找不到的时候会去找静态的内容-->
+    <mvc:default-servlet-handler/>
+
+    <!-- MVC驱动controller -->
+    <task:annotation-driven/>
+
+    <!-- 目录映射 -->
+    <mvc:resources location="/scripts/" mapping="/scripts/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/temp/" mapping="/temp/**"/>
+    <mvc:resources location="/template/" mapping="/template/**"/>
+    <mvc:resources location="/html/" mapping="/html/**"/>
+
+    <!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/forbid" view-name="jsp/result/forbid"/>
+    <mvc:view-controller path="/admin/login" view-name="jsp/admin/login"/>
+
+    <!-- 定义文件上传解析器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <!-- 设定文件上传的最大值为5MB，5*1024*1024 -->
+        <property name="maxUploadSize" value="1024000000"/>
+        <!-- 设定文件上传时写入内存的最大值，如果小于这个参数不会生成临时文件，默认为10240 -->
+        <property name="maxInMemorySize" value="40960"></property>
+
+        <!-- 上传文件的临时路径 -->
+        <!--<property name="uploadTempDir" value="fileUpload/temp"></property>-->
+        <!--<property name="uploadTempDir" value="uploadTempDir"/>-->
+
+        <!-- 延迟文件解析 -->
+        <property name="resolveLazily" value="true"/>
+    </bean>
+
+    <!-- 配置国际化资源文件 -->
+    <bean id="messageSource" name="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->
+        <property name="useCodeAsDefaultMessage" value="true" />
+        <!-- 默认编码格式为 utf-8 -->
+        <property name="defaultEncoding" value="UTF-8" />
+
+        <!-- 国际化信息所在的文件名 -->
+        <property name="basenames">
+            <list>
+                <value>i18n_config</value>
+                <value>i18n_message</value>
+                <value>i18n_product</value>
+                <value>i18n_security</value>
+                <value>i18n_tmp</value>
+                <value>i18n_version</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 跨域 -->
+    <bean id="cors" class="com.lwhtarena.company.sys.obj.CorsConfigurerAdapter"/>
+
+    <import resource="transaction.xml"/>
+    <import resource="beans.xml"/>
+
+    <bean id="htmlCreateTask" class="com.lwhtarena.company.web.handlers.TimerHandler"></bean>
+
+    <task:scheduled-tasks>
+        <!-- 这里表示的时每隔半个小时执行一次 1000 * 60 * 30  -->
+        <task:scheduled ref="htmlCreateTask" fixed-rate="1800000" method="htmlCreateUpdate"/>
+    </task:scheduled-tasks>
+
+</beans>

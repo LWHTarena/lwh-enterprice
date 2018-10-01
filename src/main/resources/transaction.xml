@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--转载属性配置文件-->
+    <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+    <!-- 配置阿里数据库数据源 -->
+    <bean id="druidDataSource"
+          class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+
+        <!-- 基本属性 url、user、password -->
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat"/>
+
+        <!-- 配置初始化大小 、最小、最大 -->
+        <property name="maxActive" value="20"/>
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
+
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxOpenPreparedStatements" value="20"/>
+
+    </bean>
+
+    <!-- 配置SessionFactory -->
+    <bean id="sf" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="druidDataSource"/>
+        <property name="mappingResources">
+            <list>
+                <!-- 站点信息 -->
+                <value>com/lwhtarena/business/web/entities/Portal.hbm.xml</value>
+
+
+                <!-- 用户及角色 -->
+                <value>com/lwhtarena/business/web/entities/Admin.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/Role.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/User.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/UserArtsCount.hbm.xml</value>
+
+                <!-- 文章 -->
+                <value>com/lwhtarena/business/web/entities/ArticleGroup.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/Article.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/ArticleAtta.hbm.xml</value>
+
+                <!-- 模板 -->
+                <value>com/lwhtarena/business/web/entities/TempletPortalMain.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/TempletPortalSubElement.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/TempletComment.hbm.xml</value>
+
+                <!-- 访客簿及ip记录 -->
+                <value>com/lwhtarena/business/web/entities/VisitorsBook.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/VisitorIPRecord.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/VisitArchives.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/VisitorCountInPeriod.hbm.xml</value>
+
+                <!-- 民意调查 -->
+                <value>com/lwhtarena/business/web/entities/Poll.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/PollIPRecord.hbm.xml</value>
+
+                <!--评论-->
+                <value>com/lwhtarena/business/web/entities/CommentBridge.hbm.xml</value>
+                <value>com/lwhtarena/business/web/entities/CommentThread.hbm.xml</value>
+
+                <!-- 上传的文章 -->
+                <value>com/lwhtarena/business/web/entities/UploadedFile.hbm.xml</value>
+
+                <!-- 静态文件库 -->
+                <value>com/lwhtarena/business/web/entities/HtmlFileStatic.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hbm2ddl.auto}</prop>
+                <prop key="hibernate.show_sql">${show_sql}</prop>
+                <prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+                <prop key="hibernate.search.default.indexBase">${hibernate.search.default.indexBase}</prop>
+                <prop key="jdbc.batch_size">${jdbc.batch_size}</prop>
+                <prop key="jdbc.fetch_size">${jdbc.fetch_size}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sf" />
+    </bean>
+
+    <aop:config>
+        <aop:pointcut id="allDaoMethod"
+                      expression="execution(* com.lwhtarena.company.web.handlers..*.*(..))" />
+        <aop:advisor pointcut-ref="allDaoMethod" advice-ref="txAdvice" />
+    </aop:config>
+
+
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="import*" propagation="REQUIRED" />
+            <tx:method name="login*" propagation="REQUIRED" />
+            <tx:method name="modify*" propagation="REQUIRED" />
+            <tx:method name="query*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="copy*" propagation="REQUIRED" />
+            <tx:method name="upload*" propagation="REQUIRED" />
+            <tx:method name="*Update"  propagation="REQUIRED" />
+            <tx:method name="*" read-only="true"  propagation="REQUIRED" />
+
+        </tx:attributes>
+    </tx:advice>
+</beans>

@@ -1,0 +1,72 @@
+/*
+author lzh
+
+*/
+@CHARSET "UTF-8";
+span .layui-icon {font-size: 30px; color: #1E9FFF;}
+
+.runtest {
+	position: relative; //
+	display: none;
+}
+
+.addbtn {
+	margin: 50px 250px 0 0;
+	text-align: center;
+}
+
+.runtest a {
+}
+
+.toppos {
+	margin-top: 10px;
+}
+
+.layui-input-block {
+	padding-right: 10px;
+}
+
+.layui-input {
+	line-height: 12px;
+}
+
+.ipAndViewIpput {
+	white-space: nowrap;
+	float: left;
+}
+
+.layui-input {
+	display: inline;
+	float: none;
+	width: 400px;
+}
+.layui-select-title,.layui-form-select{
+	width: 400px;
+}
+
+#initialIPValue, #initialViewValue {
+	width: 180px;
+}
+#LAY_demo_upload{ border:1px solid #ccc; margin:5px 0; padding:3px; width:auto; height: auto;}
+
+
+.person_info{ padding: 20px 0 0 0;}
+.person_left_con{float:left; width:190px; text-align: center;}
+.person_img{}
+.person_img img{width:135px;height:190px; padding:3px; background: #fff; border:1px #ccc solid;}
+
+.person_right_con{float:right;width:280px;}
+.person_right_con span{ display: inline-block; line-height: 1.8em; font-size: 16px;}
+.list_left{width:80px; text-align: right;}
+.list_right{ width:190px; padding-left:10px;}
+
+.hc_img{padding: 20px 0 0 0;}
+.hc_img img{width:440px; padding:3px; background: #fff; border:1px #ccc solid; margin:0 auto; display: block;}
+
+.licence_img{padding: 20px 0 0 0;}
+.licence_img img{width:440px; padding:3px; background: #fff; border:1px #ccc solid; margin:0 auto; display: block;}
+
+.permit_img{padding: 20px 0 0 0;}
+.permit_img img{width:630px; padding:3px; background: #fff; border:1px #ccc solid; margin:0 auto; display: block;}
+
+.cle{ clear: both;}

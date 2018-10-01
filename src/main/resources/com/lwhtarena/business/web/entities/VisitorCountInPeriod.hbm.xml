@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="VisitorCountInPeriod" table="visitors_count_in_hour" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		
+		<property name="hour" />
+		<property name="totalView" />
+		<property name="totalIP" />
+		<many-to-one name="va" column="vaID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="VisitArchives" />
+
+	</class>
+</hibernate-mapping>

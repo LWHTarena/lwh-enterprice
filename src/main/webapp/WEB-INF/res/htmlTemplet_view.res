@@ -1,0 +1,1 @@
+来访人数：{$tag:ips$} 　上次IP：{$tag:lastip$}

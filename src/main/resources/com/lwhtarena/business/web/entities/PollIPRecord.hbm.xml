@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="PollIPRecord" table="poll_record" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="ip" />
+		<property name="result" />
+		<property name="ipfrom" />
+		<property name="reffer" />
+		<property name="visitUrl" />
+		<property name="pollDatetime" />
+		
+		<many-to-one name="poll" column="pollID" lazy="false" cascade="none" fetch="select" 
+			outer-join="true" class="Poll" />
+
+	</class>
+</hibernate-mapping>

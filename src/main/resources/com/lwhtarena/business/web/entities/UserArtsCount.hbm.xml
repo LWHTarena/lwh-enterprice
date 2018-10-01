@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="UserArtsCount" table="user_arts_count" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="timeKey" />
+		<property name="artGids" />
+		
+		<property name="artsPassed" />
+		<property name="artsTotal" />
+				
+		<many-to-one name="user" column="uid" lazy="false"
+			outer-join="true" class="User" />
+		
+	</class>
+</hibernate-mapping>

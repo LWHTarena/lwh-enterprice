@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="TempletPortalSubElement" table="templet_portal_sub_el" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="borderCode" type="text" />
+		<property name="cssCode" type="text" />
+		<property name="mainCode" type="text" />
+		<property name="topCode" type="text" />
+		<property name="footerCode" type="text" />
+		<property name="targetStr" />
+		<property name="titleFormat" />
+		<property name="majorLoopCodeInLump"  type="text" />
+		<property name="minorLoopCodeInLump"  type="text" />
+		<property name="searchAreaCode"  type="text" />
+		<property name="functionAreaCode"  type="text" />
+		<property name="userPanelCodeLogin"  type="text" />
+		<property name="userPanelCodeLogout"  type="text" />
+		<property name="exclusiveCode1"  type="text" />
+		<property name="exclusiveCode2"  type="text" />
+		<property name="exclusiveCode3"  type="text" />
+		<property name="exclusiveCode4"  type="text" />
+	</class>
+</hibernate-mapping>

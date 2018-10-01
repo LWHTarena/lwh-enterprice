@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.lwhtarena.company.web.entities">
+	<class name="TempletPortalMain" table="templet_portal_main" dynamic-update="true">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" not-null="true" />
+		<property name="state" />
+		<property name="def" />
+		<property name="freeOnClouds" />
+		<property name="author" />
+		<property name="description" />
+		<property name="uuid" />
+		<property name="ownerToken" />
+		<property name="resFolder" />
+		<property name="orderNum" />
+		<property name="downs" />
+		<property name="designTime" />
+		<property name="modifyTime" />
+		
+		<property name="sundriesTag" type="text" />
+		<property name="publicCode1"  type="text" />
+		<property name="publicCode2"  type="text" />
+		<property name="publicCode3"  type="text" />
+		<property name="publicCode4"  type="text" />
+		<property name="customFormatCode1"  type="text" />
+		<property name="customFormatCode2"  type="text" />
+		<property name="customFormatCode3"  type="text" />
+		<property name="customFormatCode4"  type="text" />
+		<property name="customFormatCode5"  type="text" />
+		<property name="customFormatCode6"  type="text" />
+		<property name="customFormatCode7"  type="text" />
+		<property name="customFormatCode8"  type="text" />
+		
+		<many-to-one name="elPublic" lazy="false" outer-join="true" cascade="all"
+			column="publicID" class="TempletPortalSubElement" />
+		<many-to-one name="elIndex" lazy="false" outer-join="true" cascade="all"
+			column="indexID" class="TempletPortalSubElement" />
+		<many-to-one name="elNav" lazy="false" outer-join="true" cascade="all"
+			column="navID" class="TempletPortalSubElement" />
+		<many-to-one name="elArt" lazy="false" outer-join="true" cascade="all"
+			column="artID" class="TempletPortalSubElement" />
+		<many-to-one name="elCorpus" lazy="false" outer-join="true" cascade="all"
+			column="corpusID" class="TempletPortalSubElement" />
+		<many-to-one name="elEdit" lazy="false" outer-join="true" cascade="all"
+			column="editID" class="TempletPortalSubElement" />
+		<many-to-one name="elExtend" lazy="false" outer-join="true" cascade="all"
+			column="extendID" class="TempletPortalSubElement" />
+			
+		<many-to-one name="elComment" lazy="false" outer-join="true" cascade="all"
+			column="commentID" class="TempletComment" />
+			
+	</class>
+</hibernate-mapping>
