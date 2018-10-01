@@ -259,7 +259,7 @@ public class UserHandler {
     @RequestMapping(value = "/addByName")
     @ResponseBody
     @Token(ajax = true, log = true, mark = "user--<addByName>", admin = true, failedPage = ADMINFORBID, msgKey = "fail.permission")
-    public int addByName(String name, HttpServletRequest request) {
+    public Integer addByName(String name, HttpServletRequest request) {
 
         boolean existing = false;
         if (userDaoImpl.findByUsername(name) != null) {
