@@ -19,6 +19,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -91,10 +92,12 @@ public class PortalHandler {
 
     @RequestMapping("/query")
     @Token(ajax = false, mark = "portal--<query>", admin = true, failedPage = ADMINFORBID, msgKey = "fail.permission")
-    public ModelAndView modifyAndQuery(Map<String, Object> map) {
+    public ModelAndView modifyAndQuery(Model model) {
         Portal portal = portalDaoImpl.query();
-        map.put("portal", portal);
-        map.put("vbook", portal.getVbook());
+
+        model.addAttribute("portal", portal);
+        model.addAttribute("vbook", portal.getVbook());
+
         return MavUtil.mav("jsp/portal/inf", "");
     }
 
