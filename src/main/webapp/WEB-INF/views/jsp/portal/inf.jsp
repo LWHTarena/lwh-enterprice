@@ -63,8 +63,7 @@
 
 <!-- ■★▲◆修改点3  表单的id -->
 <div class="inf_main">
-	<form:form commandName="portal" id="newcustomer" 
-		action="${pageContext.request.contextPath }/action_portal/set"
+	<form:form  id="newcustomer" modelAttribute="portal" action="${pageContext.request.contextPath }/action_portal/set"
 		method="post" class="layui-form layui-form-pane" accept-charset="UTF-8">
 		
 		<input type="hidden" name="token" value="${hq.buildToken()}" />
