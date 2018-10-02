@@ -13,13 +13,17 @@ import com.lwhtarena.company.rank.entities.RankUnit;
  * </h1>
  */
 public class ArticleGroup extends RankUnit {
+
+    /**名称**/
     private String name;
     private String title;
     private String icoUrl;
     private String jumpToUrl;
     private String folder;
     private String url;
-    private String ipVisitAllow; //限定可访问的IP
+
+    /**限定可访问的IP**/
+    private String ipVisitAllow;
     private String htmlOwn;
     private boolean status;
     private boolean changed;

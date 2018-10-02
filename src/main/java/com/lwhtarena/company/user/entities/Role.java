@@ -9,11 +9,23 @@ package com.lwhtarena.company.user.entities;
  * <ol></ol>
  */
 public class Role {
+
+    /**标识符**/
     private long id;
+
+    /**角色名称**/
     private String name;
+
+    /**授权码 a1,a2, ... **/
     private String mask;
+
+    /**状态 0：禁用;1：正常**/
     private boolean status;
+
+    /**默认角色 0：关 1：开 **/
     private boolean def;
+
+    /**用户数量**/
     private long counts;
 
     public Role() {

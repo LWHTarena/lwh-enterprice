@@ -14,24 +14,57 @@ import javax.validation.constraints.Size;
 public class User {
 
     private long id;
+
+    /**用户名**/
     @NotEmpty
     @Size(max = 10,min = 3)
     private String username;
+
+
     private String uuid;
+
+    /**注册时验证地址**/
     private String avatarUrl;
+
+    /**姓名**/
     private String truename;
+
+    /**登录密码**/
     private String password;
+
+    /****/
     private String pwdAtCreate;
+
+    /**加盐**/
     private String salt;
+
+    /**邮箱**/
     private String email;
+
+    /**手机**/
     private String mobile;
+
+    /**修改登录秘密时间**/
     private long pwdChangeTime;
+
+    /**上一次登录时间**/
     private long lastLoginTime;
+
+    /**上一次登录ip**/
     private String lastLoginIP;
+
+    /**创建时间**/
     private long createTime;
+
+    /**创建时的ip**/
     private String createIP;
+
+    /**状态 0:禁用 1:正常**/
     private boolean state;
+
     private String entitesName;
+
+    /**关联角色ID**/
     private Role role;
 
     public User() {

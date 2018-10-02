@@ -17,24 +17,62 @@ import java.io.Serializable;
 public class Portal implements Serializable {
 
     private long id;
+
+    /**网站名称**/
     private String name;
-    private String fullName; //网站全称
+
+    /**网站全称(全称)**/
+    private String fullName;
+
+    /**网址**/
     private String url;
+
+    /**状态**/
     private int status;
-    private String keyWords; //网站关键字
-    private String description; //网站描述
-    private String host; //网站主机名或域名
-    private String closeAnnounce; //网站关闭通知
-    private String welcomeStr; //网站欢迎词
+
+    /**网站关键字**/
+    private String keyWords;
+
+    /**网站描述**/
+    private String description;
+
+    /**网站主机名或域名**/
+    private String host;
+
+    /**网站关闭通知**/
+    private String closeAnnounce;
+
+    /**网站欢迎词**/
+    private String welcomeStr;
+
+    /**限定可注册IP或范围,如：192.168.222.12-192.168.222.254**/
     private String ipRegScope;
+
+    /**允许用户注册：0：关闭 1：开启**/
     private boolean userRegAllow;
+
+    /**允许投票 0：关闭 1：开启**/
     private boolean poll;
+
+    /**允许评论 0：关闭 1：开启**/
     private boolean comm;
+
+    /**匿名评论 0：关闭 1：开启**/
     private boolean freeComm;
+
+    /**评论自动通过 0：关闭 1：开启**/
     private boolean commPassAuto;
+
+    /**文章自动审核 0：关闭 1：开启**/
     private boolean artPassAuto;
+
+    /**验证码发送方式**/
     private int codeSendMode;
-    private String ipVisitAllow; //限定可访问的IP
+
+    /**限定可访问的IP**/
+    private String ipVisitAllow;
+
+
     private VisitorsBook vbook;
 
     public long getId() {
