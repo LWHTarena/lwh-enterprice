@@ -215,8 +215,8 @@ function crucial(){
 		url : uri,
 		type : 'post',
 		success : function(data) {
-			
-			if (data.uid>0){
+
+			if (data.uid>-1){
 				var result="你的ID:"+data.uid;
 				
 				result += "<br>注册时间：" + data.regDatetime;
